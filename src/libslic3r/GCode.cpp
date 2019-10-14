@@ -1034,6 +1034,15 @@ void GCode::_do_export(Print &print, FILE *file)
     m_placeholder_parser.set("has_wipe_tower", has_wipe_tower);
     m_placeholder_parser.set("has_single_extruder_multi_material_priming", has_wipe_tower && print.config().single_extruder_multi_material_priming);
     std::string start_gcode = this->placeholder_parser_process("start_gcode", print.config().start_gcode.value, initial_extruder_id);
+
+    // Set firmware version if version check enabled
+    if (print.config().version_check.value) {
+        // TODO get real value
+        std::string latest_firmware = "3.9.0";
+        std::string version_code = "M115 U" + latest_firmware + "\n";
+        _writeln(file, version_code);
+    }
+
     // Set bed temperature if the start G-code does not contain any bed temp control G-codes.
     this->_print_first_layer_bed_temperature(file, print, start_gcode, initial_extruder_id, true);
     // Set extruder(s) temperature before and after start G-code.

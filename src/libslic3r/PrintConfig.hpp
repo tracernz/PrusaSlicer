@@ -652,6 +652,7 @@ public:
     ConfigOptionFloats              retract_restart_extra;
     ConfigOptionFloats              retract_restart_extra_toolchange;
     ConfigOptionFloats              retract_speed;
+    ConfigOptionBool                version_check;
     ConfigOptionString              start_gcode;
     ConfigOptionStrings             start_filament_gcode;
     ConfigOptionBool                single_extruder_multi_material;
@@ -726,6 +727,7 @@ protected:
         OPT_PTR(retract_speed);
         OPT_PTR(single_extruder_multi_material);
         OPT_PTR(single_extruder_multi_material_priming);
+        OPT_PTR(version_check);
         OPT_PTR(start_gcode);
         OPT_PTR(start_filament_gcode);
         OPT_PTR(toolchange_gcode);

@@ -1785,6 +1785,13 @@ void PrintConfigDef::init_fff_params()
     def->mode = comExpert;
     def->set_default_value(new ConfigOptionInt(-5));
 
+    def = this->add("version_check", coBool);
+    def->label = L("Emit firmware version check g-code");
+    def->tooltip = L("G-Code will be emitted at the start of the print informing the printer "
+                     "of the latest firmware version. It may notify the user if the printer is"
+                     " using an older version");
+    def->set_default_value(new ConfigOptionBool(true));
+
     def = this->add("start_gcode", coString);
     def->label = L("Start G-code");
     def->tooltip = L("This start procedure is inserted at the beginning, after bed has reached "
@@ -2714,7 +2721,7 @@ void PrintConfigDef::init_sla_params()
     def->max = 30;
     def->mode = comExpert;
     def->set_default_value(new ConfigOptionFloat(0.));
-    
+
     def = this->add("pad_brim_size", coFloat);
     def->label = L("Pad brim size");
     def->tooltip = L("How far should the pad extend around the contained geometry");
@@ -2765,7 +2772,7 @@ void PrintConfigDef::init_sla_params()
     def->tooltip = L("Create pad around object and ignore the support elevation");
     def->mode = comSimple;
     def->set_default_value(new ConfigOptionBool(false));
-    
+
     def = this->add("pad_around_object_everywhere", coBool);
     def->label = L("Pad around object everywhere");
     def->category = L("Pad");
